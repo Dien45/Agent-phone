@@ -1,0 +1,76 @@
+{
+  "name": "agentik-windows-control",
+  "version": "1.0.0",
+  "description": "Tool set for controlling Windows PC from Android via Agentik Hybrid system",
+  "tools": [
+    {
+      "name": "run_command",
+      "description": "Run a shell command on the Windows host (dir, notepad, git, pip, etc.)",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "type": "string",
+            "description": "The command to run, e.g. 'dir C:\\\\', 'notepad notes.txt'"
+          }
+        },
+        "required": ["command"]
+      }
+    },
+    {
+      "name": "list_files",
+      "description": "List files and directories under a given path",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path to list, e.g. 'C:\\\\Users\\\\username\\\\Documents'"
+          }
+        },
+        "required": ["path"]
+      }
+    },
+    {
+      "name": "download_file",
+      "description": "Download a file from Windows to Android",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "Filename to download"
+          },
+          "save_path": {
+            "type": "string",
+            "description": "Where to save on Android"
+          }
+        },
+        "required": ["filename"]
+      }
+    },
+    {
+      "name": "launch_app",
+      "description": "Launch an installed application on Windows",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "app_id": {
+            "type": "string",
+            "description": "Application identifier, e.g. 'chrome', 'notepad', 'vscode'"
+          }
+        },
+        "required": ["app_id"]
+      }
+    },
+    {
+      "name": "get_desktop_stream",
+      "description": "Get VNC stream URL for remote desktop control",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  ]
+}
