@@ -1,11 +1,9 @@
-# File: agentik/.github/workflows/build-apk.yml
 name: Build Agentik APK
-
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -35,7 +33,7 @@ jobs:
           path: android-app/app/build/outputs/apk/debug/*.apk
           retention-days: 14
 
-      - name: Create GitHub Release (on tag push)
+      - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
