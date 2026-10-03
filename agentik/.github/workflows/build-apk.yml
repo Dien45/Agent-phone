@@ -1,3 +1,4 @@
+# File: agentik/.github/workflows/build-apk.yml
 name: Build Agentik APK
 
 on:
@@ -14,20 +15,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
           cache: gradle
 
-      - name: Grant execute permission for gradlew
+      - name: Grant execute permission
         run: chmod +x android-app/gradlew
 
       - name: Build debug APK
-        run: |
-          cd android-app
-          ./gradlew assembleDebug
+        run: ./android-app/gradlew assembleDebug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
@@ -40,7 +39,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
-          files: android-app/app/build/outputs/apk/release/*.apk
+          files: android-app/app/build/outputs/apk/debug/*.apk
           draft: false
           prerelease: false
         env:
